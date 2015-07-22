@@ -3,11 +3,10 @@ package services;
 import java.sql.SQLException;
 import java.util.List;
 
-import dataAccessObjects.UserDao;
-import dataAccessObjects.UserDaoCassandra;
 import dataAccessObjects.accesslayer.DbAccessLayer;
 import dataAccessObjects.accesslayer.DbAccessLayerCassandra;
 import dataTransferObjects.Contract;
+import dataTransferObjects.ContractService;
 import dataTransferObjects.User;
 
 public class ServicesImpl implements Services {
@@ -44,7 +43,14 @@ public class ServicesImpl implements Services {
 	}
 
 	private List<Contract> getContractsByUsername(String username) throws ClassNotFoundException, SQLException {
-		return dbAccessLayer.getContractsByUser(username);
+		List<Contract> listContracts = dbAccessLayer.getContractsByUser(username);
+
+		for (Contract currContract : listContracts) {
+			List<ContractService> listContractServices = this.dbAccessLayer.getServicesByContractId(currContract.getContract_id());
+			currContract.setServices(listContractServices);
+		}
+
+		return listContracts;
 
 	}
 

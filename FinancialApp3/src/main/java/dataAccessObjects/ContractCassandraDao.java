@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataTransferObjects.Contract;
-import dataTransferObjects.User;
 
 public class ContractCassandraDao implements ContractDao {
 
@@ -50,6 +49,7 @@ public class ContractCassandraDao implements ContractDao {
 			currContract.setStartTime(rs.getString("start_time"));
 			currContract.setLeasingRate(rs.getDouble("leasing_rate"));
 			currContract.setVehicle(rs.getInt("vehicle_id"));
+			currContract.setContract_id(rs.getInt("contract_id"));
 			listContracts.add(currContract);
 
 		}

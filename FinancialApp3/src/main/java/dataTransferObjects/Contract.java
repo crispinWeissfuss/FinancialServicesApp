@@ -14,7 +14,7 @@ public class Contract {
 	private int vehicle;
 	private String username;
 
-	private List Services;
+	private List<ContractService> Services;
 
 	public Contract() {
 		// TODO Auto-generated constructor stub
