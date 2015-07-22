@@ -1,5 +1,7 @@
 package com.javacodegeeks.enterprise.rest.jersey;
 
+import java.sql.SQLException;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -30,7 +32,7 @@ public class JerseyRestService {
 	@GET
 	@Path("/authenticate/username/{username}/password/{password}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User authenticateUser(@PathParam("username") String name, @PathParam("password") String password) {
+	public User authenticateUser(@PathParam("username") String name, @PathParam("password") String password) throws ClassNotFoundException, SQLException {
 
 		Services services = new ServicesImpl();
 
