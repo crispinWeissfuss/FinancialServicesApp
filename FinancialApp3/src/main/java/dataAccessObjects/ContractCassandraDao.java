@@ -23,12 +23,13 @@ public class ContractCassandraDao implements ContractDao {
 	public List<Contract> getContractByUsername(String username) throws SQLException {
 		ResultSet rs = this.executeQuery(username);
 		List<Contract> listContracts = this.mapResultSetToListContracts(rs);
-
+		System.out.println(listContracts.toString());
 		return listContracts;
 	}
 
 	private ResultSet executeQuery(String username) throws SQLException {
 		String detailedQuery = QUERY + "\'" + username + "\'";
+		System.out.println(detailedQuery);
 
 		PreparedStatement statement = this.con.prepareStatement(detailedQuery);
 
