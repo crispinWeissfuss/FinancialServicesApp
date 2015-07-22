@@ -32,4 +32,10 @@ public class DbAccessLayerCassandra implements DbAccessLayer {
 		return user;
 	}
 
+	@Override
+	public List<Contract> getContractsByUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

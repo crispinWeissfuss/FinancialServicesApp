@@ -6,6 +6,7 @@ public class User {
 	private String firstName;
 	private String Lastname;
 	private String password;
+	private String username;
 	private List<Contract> listOfContracts = null;
 	private List<Route> listOfRoutes = null;
 
@@ -51,6 +52,14 @@ public class User {
 
 	public void setListOfRoutes(List<Route> listOfRoutes) {
 		this.listOfRoutes = listOfRoutes;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

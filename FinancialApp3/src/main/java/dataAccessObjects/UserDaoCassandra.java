@@ -10,7 +10,7 @@ import dataTransferObjects.User;
 public class UserDaoCassandra implements UserDao {
 
 	Connection con = null;
-	private static final String QUERY = "SELECT * FROM financialservicesapp.user WHERE username = ";
+	private static final String QUERY = "SELECT * FROM financialserviceapp.user WHERE username = ";
 
 	public UserDaoCassandra(Connection con) {
 		this.con = con;
@@ -19,8 +19,9 @@ public class UserDaoCassandra implements UserDao {
 	@Override
 	public User getUserByName(String username) throws SQLException {
 		ResultSet rs = this.executeQuery(username);
+		User user = this.mapResultSetToUser(rs);
 
-		return this.userMock();
+		return user;
 	}
 
 	private ResultSet executeQuery(String username) throws SQLException {
@@ -33,14 +34,16 @@ public class UserDaoCassandra implements UserDao {
 
 	}
 
-	private User mapResultSetToUser(ResultSet rs){
-		
-		
-		
-		return null;
+	private User mapResultSetToUser(ResultSet rs) throws SQLException {
+		User user = new User();
+		user.setUsername(rs.getString("username"));
+		user.setFirstName(rs.getString("firstname"));
+		user.setLastname(rs.getString("lastname"));
+		user.setPassword(rs.getString("password"));
+
+		return user;
 	}
-	
-	
+
 	private User userMock() {
 
 		User user = new User();
