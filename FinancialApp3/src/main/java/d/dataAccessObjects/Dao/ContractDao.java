@@ -7,6 +7,8 @@ import b.dataTransferObjects.Contract;
 
 public interface ContractDao {
 
-	List<Contract> getContractByUsername(String username)  throws SQLException;
-	
+	List<Contract> getContractByUsername(String username) throws SQLException;
+
+	Contract getContractByVehicleId(int vehicleId) throws SQLException;
+
 }

@@ -12,12 +12,14 @@ public interface DbAccessLayer {
 
 	User authenticateUser(String username) throws SQLException;
 
+	Contract getContractByVehicleId(int vehicleId) throws SQLException;
+
 	List<Contract> getContractsByUser(String username) throws SQLException;
 
 	List<ContractService> getServicesByContractId(int contractId) throws SQLException;
 
 	String getCountryNameByCountryId(int countryId) throws SQLException;
-	
-	Vehicle getVehicleById(int VehicleId)  throws SQLException;
+
+	Vehicle getVehicleById(int VehicleId) throws SQLException;
 
 }

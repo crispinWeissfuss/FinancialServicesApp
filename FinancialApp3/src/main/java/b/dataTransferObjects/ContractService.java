@@ -1,5 +1,7 @@
 package b.dataTransferObjects;
 
+import java.util.Date;
+
 public class ContractService {
 
 	private int serviceId;
@@ -11,6 +13,8 @@ public class ContractService {
 	private String countryName;
 	private boolean isProposal = false;
 	private String Servicename;
+	private Date startTimestamp;
+	private Date endTimestamp;
 
 	public ContractService() {
 		// TODO Auto-generated constructor stub
@@ -33,19 +37,11 @@ public class ContractService {
 	}
 
 	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+		return dtoUtils.formatDateIntoDdMmYyyy(this.startTimestamp);
 	}
 
 	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+		return dtoUtils.formatDateIntoDdMmYyyy(this.endTimestamp);
 	}
 
 	public int getContractId() {
@@ -86,6 +82,14 @@ public class ContractService {
 
 	public void setServicename(String servicename) {
 		Servicename = servicename;
+	}
+
+	public void setStartTimestamp(Date startTimestamp) {
+		this.startTimestamp = startTimestamp;
+	}
+
+	public void setEndTimestamp(Date endTimestamp) {
+		this.endTimestamp = endTimestamp;
 	}
 
 }

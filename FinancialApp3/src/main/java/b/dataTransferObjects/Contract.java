@@ -1,8 +1,12 @@
 package b.dataTransferObjects;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class Contract {
 
@@ -19,10 +23,9 @@ public class Contract {
 	private String username;
 	private String name;
 
-	private List<ContractService> Services;
+	private List<ContractService> Services = new ArrayList<ContractService>();
 
 	public Contract() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getContract_id() {
@@ -108,20 +111,30 @@ public class Contract {
 		return dtoUtils.formatDateIntoDdMmYyyy(this.endTimestamp);
 	}
 
-	public Date getStartTimestamp() {
-		return startTimestamp;
-	}
-
 	public void setStartTimestamp(Date startTimestamp) {
 		this.startTimestamp = startTimestamp;
 	}
 
-	public Date getEndTimestamp() {
-		return endTimestamp;
-	}
-
 	public void setEndTimestamp(Date endTimestamp) {
 		this.endTimestamp = endTimestamp;
+	}
+
+	public void addContractService(ContractService contractService) {
+		this.Services.add(contractService);
+	}
+
+	@Override
+	public String toString() {
+		String userAsJson = null;
+
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			userAsJson = mapper.writeValueAsString(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return userAsJson;
 	}
 
 }

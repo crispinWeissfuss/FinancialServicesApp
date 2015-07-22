@@ -1,6 +1,7 @@
 package c.internalServices;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -33,5 +34,14 @@ public class ServicesImplTest {
 		System.out.println(services.authentificateUser("hodor", "hodor").toString());
 
 	}
+	
+	@Test
+	public void getCountryServiceProposal() throws ClassNotFoundException, SQLException, ParseException {
+		ServicesImpl services = new ServicesImpl();
+		
+		System.out.println(services.getCountryServiceProposal("DE", 1, "01.01.2014", "01.01.2015").toString());
+
+	}
+	
 
 }

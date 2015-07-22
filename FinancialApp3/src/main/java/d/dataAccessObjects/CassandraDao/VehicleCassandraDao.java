@@ -41,7 +41,7 @@ public class VehicleCassandraDao implements VehicleDao {
 		Vehicle vehicle = new Vehicle();
 
 		vehicle.setVehicleId(rs.getInt("vehicle_id"));
-		vehicle.setDescription("description");
+		vehicle.setDescription(rs.getString("description"));
 
 		return vehicle;
 	}

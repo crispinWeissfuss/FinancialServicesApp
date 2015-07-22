@@ -68,4 +68,9 @@ public class DbAccessLayerCassandra implements DbAccessLayer {
 		return this.vehicleDao.getVehicleById(VehicleId);
 	}
 
+	@Override
+	public Contract getContractByVehicleId(int vehicleId) throws SQLException {
+		return this.contractDao.getContractByVehicleId(vehicleId);
+	}
+
 }

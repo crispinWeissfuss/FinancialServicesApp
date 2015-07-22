@@ -16,7 +16,8 @@ public class ContractCassandraDao implements ContractDao {
 
 	Connection con = null;
 	private final static Logger logger = Logger.getLogger(ContractCassandraDao.class);
-	private static final String QUERY = "SELECT * FROM financialserviceapp.contract WHERE username = ?";
+	private static final String QUERY_BY_USERNAME = "SELECT * FROM financialserviceapp.contract WHERE username = ?";
+	private static final String QUERY_BY_VEHICLE_ID = "SELECT * FROM financialserviceapp.contract WHERE vehicle_id = ? ALLOW FILTERING";
 
 	public ContractCassandraDao(Connection con) {
 		this.con = con;
@@ -24,17 +25,34 @@ public class ContractCassandraDao implements ContractDao {
 
 	@Override
 	public List<Contract> getContractByUsername(String username) throws SQLException {
-		ResultSet rs = this.executeQuery(username);
+		ResultSet rs = this.executeQueryByUsername(username);
 		List<Contract> listContracts = this.mapResultSetToListContracts(rs);
-		System.out.println(listContracts.toString());
 		return listContracts;
 	}
 
-	private ResultSet executeQuery(String username) throws SQLException {
-		logger.info("Query" + QUERY);
+	@Override
+	public Contract getContractByVehicleId(int vehicleId) throws SQLException {
+		ResultSet rs = this.executeQueryByVehicleId(vehicleId);
+		Contract contract = this.mapResultSetTContract(rs);
+		return contract;
+	}
 
-		PreparedStatement statement = this.con.prepareStatement(QUERY);
+	private ResultSet executeQueryByUsername(String username) throws SQLException {
+		logger.info("Query" + QUERY_BY_USERNAME);
+
+		PreparedStatement statement = this.con.prepareStatement(QUERY_BY_USERNAME);
 		statement.setString(1, username);
+
+		ResultSet rs = statement.executeQuery();
+		return rs;
+
+	}
+
+	private ResultSet executeQueryByVehicleId(int vehicleId) throws SQLException {
+		logger.info("Query" + QUERY_BY_VEHICLE_ID);
+
+		PreparedStatement statement = this.con.prepareStatement(QUERY_BY_VEHICLE_ID);
+		statement.setInt(1, vehicleId);
 
 		ResultSet rs = statement.executeQuery();
 		return rs;
@@ -46,14 +64,8 @@ public class ContractCassandraDao implements ContractDao {
 		List<Contract> listContracts = new ArrayList<Contract>();
 
 		while (rs.next()) {
-			Contract currContract = new Contract();
-			currContract.setUsername(rs.getString("username"));
-			currContract.setEndTimestamp(rs.getDate("end_time"));
-			currContract.setType(rs.getString("type_of_contract"));
-			currContract.setLeasingRate(rs.getDouble("leasing_rate"));
-			currContract.setVehicleId(rs.getInt("vehicle_id"));
-			currContract.setContract_id(rs.getInt("contract_id"));
-			currContract.setStartTimestamp(rs.getDate("start_time"));
+
+			Contract currContract = this.mapResultSetTContract(rs);
 			listContracts.add(currContract);
 
 		}
@@ -61,4 +73,15 @@ public class ContractCassandraDao implements ContractDao {
 		return listContracts;
 	}
 
+	private Contract mapResultSetTContract(ResultSet rs) throws SQLException {
+		Contract contract = new Contract();
+		contract.setUsername(rs.getString("username"));
+		contract.setEndTimestamp(rs.getDate("end_time"));
+		contract.setType(rs.getString("type_of_contract"));
+		contract.setLeasingRate(rs.getDouble("leasing_rate"));
+		contract.setVehicleId(rs.getInt("vehicle_id"));
+		contract.setContract_id(rs.getInt("contract_id"));
+		contract.setStartTimestamp(rs.getDate("start_time"));
+		return contract;
+	}
 }

@@ -1,6 +1,7 @@
 package a.restServices;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import c.internalServices.Services;
 import c.internalServices.ServicesImpl;
+import b.dataTransferObjects.Contract;
 import b.dataTransferObjects.User;
 
 @Path("/vwfsServices")
@@ -28,6 +30,20 @@ public class JerseyRestService {
 		User user = services.authentificateUser(name, password);
 
 		return user;
+
+	}
+
+	@GET
+	@Path("/getCountryServiceProposal/countryId/{countryId}/vehicleId/{vehicleId}/startDate/{startDate}/endDate/{endDate}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Contract getCountryServiceProposal(@PathParam("countryId") String countryId, @PathParam("vehicleId") int vehicleId,
+			@PathParam("startDate") String startDate, @PathParam("endDate") String endDate) throws ClassNotFoundException, SQLException, ParseException {
+
+		Services services = new ServicesImpl();
+		
+		Contract contract = services.getCountryServiceProposal(countryId, vehicleId, startDate, endDate);
+
+		return contract;
 
 	}
 

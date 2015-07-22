@@ -13,7 +13,7 @@ import d.dataAccessObjects.Dao.ContractServicesDao;
 public class ContractServiceCassandraDao implements ContractServicesDao {
 
 	Connection con = null;
-	private static final String QUERY = "SELECT * FROM financialserviceapp.service WHERE contract_id = ";
+	private static final String QUERY_BY_CONTACT_ID = "SELECT * FROM financialserviceapp.service WHERE contract_id = ? ALLOW FILTERING";
 
 	public ContractServiceCassandraDao(Connection con) {
 		this.con = con;
@@ -30,10 +30,8 @@ public class ContractServiceCassandraDao implements ContractServicesDao {
 	}
 
 	private ResultSet executeQuery(int contractId) throws SQLException {
-		String detailedQuery = QUERY + contractId + " ALLOW FILTERING";
-		System.out.println(detailedQuery);
-
-		PreparedStatement statement = this.con.prepareStatement(detailedQuery);
+		PreparedStatement statement = this.con.prepareStatement(QUERY_BY_CONTACT_ID);
+		statement.setInt(1, contractId);
 
 		ResultSet rs = statement.executeQuery();
 		return rs;
@@ -49,8 +47,8 @@ public class ContractServiceCassandraDao implements ContractServicesDao {
 
 			currContractService.setContractId(rs.getInt("contract_id"));
 			currContractService.setDescription(rs.getString("description"));
-			currContractService.setStartDate(rs.getString("start_time"));
-			currContractService.setEndDate(rs.getString("end_time"));
+			currContractService.setStartTimestamp(rs.getDate("start_time"));
+			currContractService.setEndTimestamp(rs.getDate("end_time"));
 			currContractService.setServiceId(rs.getInt("service_id"));
 			currContractService.setCountry_Id(rs.getInt("country_id"));
 
