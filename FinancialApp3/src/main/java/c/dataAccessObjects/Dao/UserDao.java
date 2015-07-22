@@ -1,8 +1,8 @@
-package dataAccessObjects;
+package c.dataAccessObjects.Dao;
 
 import java.sql.SQLException;
 
-import dataTransferObjects.User;
+import a.dataTransferObjects.User;
 
 public interface UserDao {
 

@@ -11,9 +11,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import dataTransferObjects.User;
-import services.Services;
-import services.ServicesImpl;
+import a.dataTransferObjects.User;
+import b.services.Services;
+import b.services.ServicesImpl;
 
 @Path("/jsonServices")
 public class JerseyRestService {

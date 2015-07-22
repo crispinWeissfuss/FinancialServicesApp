@@ -1,4 +1,4 @@
-package dataAccessObjects;
+package c.dataAccessObjects.CassandraDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataTransferObjects.Contract;
+import a.dataTransferObjects.Contract;
+import c.dataAccessObjects.Dao.ContractDao;
 
 public class ContractCassandraDao implements ContractDao {
 
@@ -48,7 +49,7 @@ public class ContractCassandraDao implements ContractDao {
 			currContract.setType(rs.getString("type_of_contract"));
 			currContract.setStartTime(rs.getString("start_time"));
 			currContract.setLeasingRate(rs.getDouble("leasing_rate"));
-			currContract.setVehicle(rs.getInt("vehicle_id"));
+			currContract.setVehicleId(rs.getInt("vehicle_id"));
 			currContract.setContract_id(rs.getInt("contract_id"));
 			listContracts.add(currContract);
 

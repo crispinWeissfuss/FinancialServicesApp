@@ -1,8 +1,6 @@
-package dataTransferObjects;
+package a.dataTransferObjects;
 
 import java.util.List;
-
-import enumerations.EnumContractType;
 
 public class Contract {
 
@@ -11,7 +9,8 @@ public class Contract {
 	private String startTime;
 	private String endTime;
 	private double leasingRate;
-	private int vehicle;
+	private Vehicle vehicle;
+	private int vehicleId;
 	private String username;
 
 	private List<ContractService> Services;
@@ -60,11 +59,11 @@ public class Contract {
 		this.leasingRate = leasingRate;
 	}
 
-	public int getVehicle() {
+	public Vehicle getVehicle() {
 		return vehicle;
 	}
 
-	public void setVehicle(int vehicle) {
+	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
 
@@ -80,7 +79,15 @@ public class Contract {
 		return Services;
 	}
 
-	public void setServices(List services) {
+	public int getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(int vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	public void setServices(List<ContractService> services) {
 		Services = services;
 	}
 

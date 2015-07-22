@@ -1,11 +1,12 @@
-package dataAccessObjects;
+package c.dataAccessObjects.CassandraDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dataTransferObjects.User;
+import a.dataTransferObjects.User;
+import c.dataAccessObjects.Dao.UserDao;
 
 public class UserDaoCassandra implements UserDao {
 

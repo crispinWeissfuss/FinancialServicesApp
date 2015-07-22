@@ -1,4 +1,4 @@
-package dataTransferObjects;
+package a.dataTransferObjects;
 
 
 public class ContractService {

@@ -1,9 +1,9 @@
-package dataAccessObjects;
+package c.dataAccessObjects.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import dataTransferObjects.Contract;
+import a.dataTransferObjects.Contract;
 
 public interface ContractDao {
 

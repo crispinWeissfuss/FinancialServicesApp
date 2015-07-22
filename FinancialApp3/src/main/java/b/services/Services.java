@@ -1,8 +1,8 @@
-package services;
+package b.services;
 
 import java.sql.SQLException;
 
-import dataTransferObjects.User;
+import a.dataTransferObjects.User;
 
 public interface Services {
 

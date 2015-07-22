@@ -1,19 +1,16 @@
-package dataTransferObjects;
+package a.dataTransferObjects;
 
 import java.io.IOException;
 import java.util.List;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 public class User {
+	private String username;
 	private String firstName;
 	private String Lastname;
 	private String password;
-	private String username;
 	private List<Contract> listOfContracts = null;
-	private List<Route> listOfRoutes = null;
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -51,14 +48,6 @@ public class User {
 		this.listOfContracts = listOfContracts;
 	}
 
-	public List<Route> getListOfRoutes() {
-		return listOfRoutes;
-	}
-
-	public void setListOfRoutes(List<Route> listOfRoutes) {
-		this.listOfRoutes = listOfRoutes;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -69,9 +58,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		
+
 		String userAsJson = null;
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			userAsJson = mapper.writeValueAsString(this);
