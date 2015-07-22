@@ -13,7 +13,7 @@ import dataTransferObjects.User;
 public class ServicesImpl implements Services {
 
 	DbAccessLayer dbAccessLayer = null;;
-	
+
 	public ServicesImpl() throws ClassNotFoundException, SQLException {
 		this.dbAccessLayer = new DbAccessLayerCassandra();
 	}
@@ -44,10 +44,7 @@ public class ServicesImpl implements Services {
 	}
 
 	private List<Contract> getContractsByUsername(String username) throws ClassNotFoundException, SQLException {
-		// ContractDao contractDao = new ContractDaoCassandra();
-		// List<Contract> listContract = contractDao.getContractsByUsername(username);
-		// return listContract;
-		return null;
+		return dbAccessLayer.getContractsByUser(username);
 
 	}
 

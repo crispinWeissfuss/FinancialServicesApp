@@ -8,8 +8,8 @@ import dataTransferObjects.User;
 
 public interface DbAccessLayer {
 
-	User authenticateUser(String username) throws ClassNotFoundException, SQLException;
+	User authenticateUser(String username) throws SQLException;
 
-	List<Contract> getContractsByUser(String username);
+	List<Contract> getContractsByUser(String username) throws ClassNotFoundException, SQLException;
 
 }

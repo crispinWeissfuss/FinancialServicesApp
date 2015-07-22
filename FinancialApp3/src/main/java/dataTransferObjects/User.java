@@ -1,6 +1,11 @@
 package dataTransferObjects;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class User {
 	private String firstName;
@@ -62,4 +67,18 @@ public class User {
 		this.username = username;
 	}
 
+	@Override
+	public String toString() {
+		
+		String userAsJson = null;
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			userAsJson = mapper.writeValueAsString(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return userAsJson;
+	}
 }

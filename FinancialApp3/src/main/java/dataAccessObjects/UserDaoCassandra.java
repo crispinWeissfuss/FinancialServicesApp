@@ -25,7 +25,8 @@ public class UserDaoCassandra implements UserDao {
 	}
 
 	private ResultSet executeQuery(String username) throws SQLException {
-		String detailedQuery = QUERY + "\"" + username + "\"";
+		String detailedQuery = QUERY + "\'" + username + "\'";
+		System.out.println(detailedQuery);
 
 		PreparedStatement statement = this.con.prepareStatement(detailedQuery);
 
