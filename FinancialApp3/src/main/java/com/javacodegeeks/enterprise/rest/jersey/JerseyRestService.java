@@ -15,19 +15,8 @@ import a.dataTransferObjects.User;
 import b.services.Services;
 import b.services.ServicesImpl;
 
-@Path("/jsonServices")
+@Path("/VwfsServices")
 public class JerseyRestService {
-
-	@GET
-	@Path("/print/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Student produceJSON(@PathParam("name") String name) {
-
-		Student st = new Student(name, "Diaz", 22, 1);
-
-		return st;
-
-	}
 
 	@GET
 	@Path("/authenticate/username/{username}/password/{password}")
@@ -45,9 +34,9 @@ public class JerseyRestService {
 	@POST
 	@Path("/send")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response consumeJSON(Student student) {
+	public Response consumeJSON(User user) {
 
-		String output = student.toString();
+		String output = user.toString();
 
 		return Response.status(200).entity(output).build();
 	}

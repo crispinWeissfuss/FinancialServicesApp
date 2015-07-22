@@ -31,7 +31,7 @@ public class DbAccessLayerCassandra implements DbAccessLayer {
 
 	public DbAccessLayerCassandra() throws ClassNotFoundException, SQLException {
 		Class.forName("org.apache.cassandra.cql.jdbc.CassandraDriver");
-		this.con = DriverManager.getConnection("jdbc:cassandra:http://10.255.1.105:32769");
+		this.con = DriverManager.getConnection("jdbc:cassandra:http://10.255.1.206:32769");
 
 		this.userDao = new UserDaoCassandra(this.con);
 		this.contractDao = new ContractCassandraDao(this.con);

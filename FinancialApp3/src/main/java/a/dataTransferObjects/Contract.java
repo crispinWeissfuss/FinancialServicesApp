@@ -12,6 +12,7 @@ public class Contract {
 	private Vehicle vehicle;
 	private int vehicleId;
 	private String username;
+	private String name;
 
 	private List<ContractService> Services;
 
@@ -89,6 +90,14 @@ public class Contract {
 
 	public void setServices(List<ContractService> services) {
 		Services = services;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

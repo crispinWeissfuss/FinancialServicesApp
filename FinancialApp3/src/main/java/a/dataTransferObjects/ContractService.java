@@ -1,6 +1,5 @@
 package a.dataTransferObjects;
 
-
 public class ContractService {
 
 	private int serviceId;
@@ -10,6 +9,8 @@ public class ContractService {
 	private int contractId;
 	private int country_Id;
 	private String countryName;
+	private boolean isProposal = false;
+	private String Servicename;
 
 	public ContractService() {
 		// TODO Auto-generated constructor stub
@@ -69,6 +70,22 @@ public class ContractService {
 
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
+	}
+
+	public boolean isProposal() {
+		return isProposal;
+	}
+
+	public void setProposal(boolean isProposal) {
+		this.isProposal = isProposal;
+	}
+
+	public String getServicename() {
+		return Servicename;
+	}
+
+	public void setServicename(String servicename) {
+		Servicename = servicename;
 	}
 
 }

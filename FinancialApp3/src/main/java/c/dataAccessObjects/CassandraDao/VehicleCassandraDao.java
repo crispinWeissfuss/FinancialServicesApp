@@ -11,7 +11,7 @@ import c.dataAccessObjects.Dao.VehicleDao;
 public class VehicleCassandraDao implements VehicleDao {
 
 	Connection con = null;
-	private static final String QUERY = "SELECT * FROM financialserviceapp.vehicle WHERE username = ";
+	private static final String QUERY = "SELECT * FROM financialserviceapp.vehicle WHERE vehicle_id = ";
 
 	public VehicleCassandraDao(Connection con) {
 		this.con = con;

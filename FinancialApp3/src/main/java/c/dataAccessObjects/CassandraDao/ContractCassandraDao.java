@@ -32,10 +32,9 @@ public class ContractCassandraDao implements ContractDao {
 	}
 
 	private ResultSet executeQuery(String username) throws SQLException {
-		String detailedQuery = QUERY + "\'" + username + "\'";
-		logger.info("Query" + detailedQuery);
+		logger.info("Query" + QUERY2);
 
-		PreparedStatement statement = this.con.prepareStatement(QUERY);
+		PreparedStatement statement = this.con.prepareStatement(QUERY2);
 		
 		statement.setString(1, username);
 

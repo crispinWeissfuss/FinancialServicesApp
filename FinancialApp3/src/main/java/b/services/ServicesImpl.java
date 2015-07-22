@@ -11,10 +11,13 @@ import c.dataAccessObjects.accesslayer.DbAccessLayerCassandra;
 
 public class ServicesImpl implements Services {
 
-	DbAccessLayer dbAccessLayer = null;;
+	private DbAccessLayer dbAccessLayer = null;
+	private ContractServices contractServices = null;
 
 	public ServicesImpl() throws ClassNotFoundException, SQLException {
 		this.dbAccessLayer = new DbAccessLayerCassandra();
+		this.contractServices = new ContractServicesImpl(this.dbAccessLayer);
+		
 	}
 
 	@Override
@@ -67,6 +70,10 @@ public class ServicesImpl implements Services {
 			currContractService.setCountryName(countryName);
 
 		}
+	}
+
+	private void generateContractName(Contract contract) {
+		String contractName = contract.getType() + " -Vertrag ";
 	}
 
 	private void addVehicleToContract(Contract contract) throws SQLException {
