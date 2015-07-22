@@ -7,13 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import a.dataTransferObjects.Contract;
 import c.dataAccessObjects.Dao.ContractDao;
 
 public class ContractCassandraDao implements ContractDao {
 
 	Connection con = null;
+	private final static Logger logger = Logger.getLogger(ContractCassandraDao.class);
 	private static final String QUERY = "SELECT * FROM financialserviceapp.contract WHERE username = ";
+	private static final String QUERY2 = "SELECT * FROM financialserviceapp.contract WHERE username = ?";
 
 	public ContractCassandraDao(Connection con) {
 		this.con = con;
@@ -29,9 +33,11 @@ public class ContractCassandraDao implements ContractDao {
 
 	private ResultSet executeQuery(String username) throws SQLException {
 		String detailedQuery = QUERY + "\'" + username + "\'";
-		System.out.println(detailedQuery);
+		logger.info("Query" + detailedQuery);
 
-		PreparedStatement statement = this.con.prepareStatement(detailedQuery);
+		PreparedStatement statement = this.con.prepareStatement(QUERY);
+		
+		statement.setString(1, username);
 
 		ResultSet rs = statement.executeQuery();
 		return rs;
