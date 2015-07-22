@@ -9,29 +9,45 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import dataTransferObjects.User;
+import services.Services;
+import services.ServicesImpl;
+
 @Path("/jsonServices")
 public class JerseyRestService {
 
 	@GET
 	@Path("/print/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Student produceJSON( @PathParam("name") String name ) {
-		
-		Student st = new Student(name, "Diaz",22,1);
+	public Student produceJSON(@PathParam("name") String name) {
+
+		Student st = new Student(name, "Diaz", 22, 1);
 
 		return st;
 
 	}
-	
+
+	@GET
+	@Path("/authenticate/username/{username}/password/{password}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User authenticateUser(@PathParam("username") String name, @PathParam("password") String password) {
+
+		Services services = new ServicesImpl();
+
+		User user = services.authentificateUser(name, password);
+
+		return user;
+
+	}
+
 	@POST
 	@Path("/send")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response consumeJSON( Student student ) {
-		
+	public Response consumeJSON(Student student) {
+
 		String output = student.toString();
 
 		return Response.status(200).entity(output).build();
 	}
-
 
 }

@@ -1,1 +1,6 @@
 /com/
+/dataAccessObjects/
+/dataTransferObjects/
+/enumerations/
+/services/
+/accesslayer/
