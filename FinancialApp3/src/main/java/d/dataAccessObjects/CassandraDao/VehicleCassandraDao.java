@@ -11,7 +11,7 @@ import d.dataAccessObjects.Dao.VehicleDao;
 public class VehicleCassandraDao implements VehicleDao {
 
 	Connection con = null;
-	private static final String QUERY = "SELECT * FROM financialserviceapp.vehicle WHERE vehicle_id = ";
+	private static final String QUERY_BY_VEHICLE_ID = "SELECT * FROM financialserviceapp.vehicle WHERE vehicle_id = ? ";
 
 	public VehicleCassandraDao(Connection con) {
 		this.con = con;
@@ -26,10 +26,9 @@ public class VehicleCassandraDao implements VehicleDao {
 	}
 
 	private ResultSet executeQuery(int VehicleId) throws SQLException {
-		String detailedQuery = QUERY + VehicleId;
-		System.out.println(detailedQuery);
 
-		PreparedStatement statement = this.con.prepareStatement(detailedQuery);
+		PreparedStatement statement = this.con.prepareStatement(QUERY_BY_VEHICLE_ID);
+		statement.setInt(1, VehicleId);
 
 		ResultSet rs = statement.executeQuery();
 		return rs;

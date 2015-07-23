@@ -1,7 +1,6 @@
 package b.dataTransferObjects;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,10 +11,10 @@ public class Contract {
 
 	private int contract_id;
 	private String type;
-	private String startTime;
+	// private String startTime;
+	// private String endTime;
 	private Date startTimestamp;
 	private Date endTimestamp;
-	private String endTime;
 	private double leasingRate;
 	private double newRate;
 	private Vehicle vehicle;
@@ -68,7 +67,7 @@ public class Contract {
 		this.username = username;
 	}
 
-	public List getServices() {
+	public List<ContractService> getServices() {
 		return Services;
 	}
 

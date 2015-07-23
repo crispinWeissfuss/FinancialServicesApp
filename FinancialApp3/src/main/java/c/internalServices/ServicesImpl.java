@@ -17,11 +17,11 @@ import d.dataAccessObjects.accesslayer.DbAccessLayerCassandra;
 public class ServicesImpl implements Services {
 
 	private DbAccessLayer dbAccessLayer = null;
-	private ContractServices contractServices = null;
+	private ContractUtils contractServices = null;
 
 	public ServicesImpl() throws ClassNotFoundException, SQLException {
 		this.dbAccessLayer = new DbAccessLayerCassandra();
-		this.contractServices = new ContractServicesImpl(this.dbAccessLayer);
+		this.contractServices = new ContractUtilsImpl(this.dbAccessLayer);
 
 	}
 
@@ -61,7 +61,10 @@ public class ServicesImpl implements Services {
 		contract.setNewRate(this.calculateNewRate(contract.getLeasingRate()));
 		contractServices.generateContractName(contract);
 
-		contract.addContractService(this.mockContractServices(countryId, vehicleId, startDate, endDate));
+		ContractService contractService = this.mockContractServices(countryId, vehicleId, startDate, endDate);
+		contractService.setContractId(contract.getContract_id());
+		
+		contract.addContractService(contractService);
 
 		return contract;
 	}
@@ -75,7 +78,7 @@ public class ServicesImpl implements Services {
 	private ContractService mockContractServices(String countryId, int vehicleId, String startDate, String endDate) throws ParseException {
 
 		ContractService contractService = new ContractService();
-		contractService.setDescription("Haftpflicht fuer " + countryId);
+		contractService.setDescription("Foreign Indemnity Insurance");
 		contractServices.generateContractServiceName(contractService);
 
 		Date startDateAsDate = new SimpleDateFormat("dd.MM.yyyy").parse(startDate);
@@ -83,9 +86,16 @@ public class ServicesImpl implements Services {
 		contractService.setStartTimestamp(startDateAsDate);
 		contractService.setEndTimestamp(endDateAsDate);
 		contractService.setProposal(true);
+		contractService.setServiceId(this.generateId());
 
 		return contractService;
 
+	}
+	
+	private int generateId(){
+		Random rand = new Random();
+		return rand.nextInt(999999998) + 1;
+									  
 	}
 
 }

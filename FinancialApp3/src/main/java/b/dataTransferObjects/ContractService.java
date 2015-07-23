@@ -6,8 +6,8 @@ public class ContractService {
 
 	private int serviceId;
 	private String description;
-	private String startDate;
-	private String endDate;
+//	private String startDate;
+//	private String endDate;
 	private int contractId;
 	private int country_Id;
 	private String countryName;

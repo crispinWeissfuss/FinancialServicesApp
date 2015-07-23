@@ -11,7 +11,7 @@ import d.dataAccessObjects.Dao.UserDao;
 public class UserDaoCassandra implements UserDao {
 
 	Connection con = null;
-	private static final String QUERY = "SELECT * FROM financialserviceapp.user WHERE username = ";
+	private static final String QUERY_BY_USERNAME = "SELECT * FROM financialserviceapp.user WHERE username = ? ";
 
 	public UserDaoCassandra(Connection con) {
 		this.con = con;
@@ -26,10 +26,9 @@ public class UserDaoCassandra implements UserDao {
 	}
 
 	private ResultSet executeQuery(String username) throws SQLException {
-		String detailedQuery = QUERY + "\'" + username + "\'";
-		System.out.println(detailedQuery);
 
-		PreparedStatement statement = this.con.prepareStatement(detailedQuery);
+		PreparedStatement statement = this.con.prepareStatement(QUERY_BY_USERNAME);
+		statement.setString(1, username);
 
 		ResultSet rs = statement.executeQuery();
 		return rs;
@@ -44,17 +43,6 @@ public class UserDaoCassandra implements UserDao {
 		user.setPassword(rs.getString("password"));
 
 		return user;
-	}
-
-	private User userMock() {
-
-		User user = new User();
-		user.setFirstName("Ned");
-		user.setLastname("Stark");
-		user.setPassword("Winter_Is_Coming");
-
-		return user;
-
 	}
 
 }

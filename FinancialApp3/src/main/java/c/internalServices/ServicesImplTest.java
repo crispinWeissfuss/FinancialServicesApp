@@ -31,7 +31,7 @@ public class ServicesImplTest {
 	public void testAuthentificateUser() throws ClassNotFoundException, SQLException {
 		ServicesImpl services = new ServicesImpl();
 		
-		System.out.println(services.authentificateUser("hodor", "hodor").toString());
+		System.out.println(services.authentificateUser("jon", "snow").toString());
 
 	}
 	
@@ -39,7 +39,7 @@ public class ServicesImplTest {
 	public void getCountryServiceProposal() throws ClassNotFoundException, SQLException, ParseException {
 		ServicesImpl services = new ServicesImpl();
 		
-		System.out.println(services.getCountryServiceProposal("DE", 1, "01.01.2014", "01.01.2015").toString());
+		System.out.println(services.getCountryServiceProposal("DE", 3, "01.01.2014", "01.01.2015").toString());
 
 	}
 	
